@@ -183,7 +183,7 @@ function savePrivateMatch(db, room, winnerUsername) {
   const endTime = new Date();
   const finalFen = room.chess ? room.chess.fen() : null;
 
-  const matchType = "private"; // explicitly for private matches
+  const matchType = "private"; 
   const mode = room.mode || "classic";
 
   let winnerId = null;

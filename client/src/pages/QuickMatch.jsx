@@ -223,7 +223,7 @@ export default function QuickMatch() {
     <div className={`quickmatch-page ${darkMode ? "dark" : ""}`}>
       <div className="quickmatch-wrapper" ref={containerRef}>
         <nav className="board-nav">
-          <button onClick={handleBack} className="icon-btn"><FaArrowLeft /></button>
+          <button onClick={handleBack} className="icon-btn"><FaArrowLeft />Back to Dashboard</button>
           <h2>Quick Match</h2>
           <div className="nav-actions">
             <button onClick={handleUndo} className="icon-btn"><FaUndo /></button>
@@ -266,7 +266,7 @@ export default function QuickMatch() {
               <p>{currentTurn === "w" ? "White's turn" : "Black's turn"}</p>
             </div>
 
-            <div className="board-center">
+            <div>
               <Chessboard
                 id="QuickMatchBoard"
                 position={fen}
