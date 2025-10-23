@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Playfair Display', sans-serif;
+}
+
+.online-match-page {
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  color: #222;
+  transition: all 0.3s ease;
+  padding: 10px;
+}
+
+.online-match-page.dark {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+.online-match-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.board-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+.online-match-page.dark .board-nav {
+  background-color: #2c2c2c;
+}
+
+.nav-left h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-left .chess-icon {
+  font-size: 1.4rem;
+}
+
+.board-nav button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.board-nav button:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.online-match-page.dark .board-nav button:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.resign-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.resign-btn:hover {
+  background-color: #d32f2f;
+}
+
+.mode-selection, .waiting-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.online-match-page.dark .mode-selection,
+.online-match-page.dark .waiting-screen {
+  background-color: #2c2c2c;
+}
+
+.mode-selection select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.start-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s ease;
+}
+
+.start-btn:hover {
+  background-color: #45a049;
+}
+
+.game-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.board-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.turn-indicator {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.timers {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.timer {
+  background-color: #e0e0e0;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.online-match-page.dark .timer {
+  background-color: #3a3a3a;
+}
+
+/* Move History & Chat */
+.move-history, .chat-box {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  width: 250px;
+  max-height: 550px;
+  overflow-y: auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.online-match-page.dark .move-history,
+.online-match-page.dark .chat-box {
+  background-color: #2c2c2c;
+}
+
+.move-history h3, .chat-box h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.move-history ol {
+  list-style-position: inside;
+}
+
+.chat-box .chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 350px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.message.own {
+  text-align: right;
+  background-color: #d0f0c0;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.message.opponent {
+  text-align: left;
+  background-color: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.online-match-page.dark .message.own {
+  background-color: #3a8c3a;
+}
+
+.online-match-page.dark .message.opponent {
+  background-color: #3a3a3a;
+}
+
+.chat-input {
+  display: flex;
+  gap: 6px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.chat-input button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #2196f3;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.chat-input button:hover {
+  background-color: #1976d2;
+}
+
+.game-over-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffeb3b;
+  color: #222;
+  padding: 25px 40px;
+  border-radius: 12px;
+  text-align: center;
+  z-index: 999;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.online-match-page.dark .game-over-message {
+  background-color: #ff9800;
+  color: #fff;
+}
+
+@media (max-width: 1000px) {
+  .game-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .move-history, .chat-box {
+    width: 90%;
+  }
+}

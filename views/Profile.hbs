@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <title>Profile</title>
+</head>
+<body>
+    <div class="profile-container">
+        <a href="/" class="back-btn">Back to Dashboard</a>
+        <h1>Account Profile</h1>
+
+        <div class="stats-card">
+            <div class="stat win">
+                <i class="fa-solid fa-trophy"></i>
+                <div class="value">{{user.wins}}</div>
+                <div class="label">Wins</div>
+            </div>
+            <div class="stat loss">
+                <i class="fa-solid fa-skull-crossbones"></i>
+                <div class="value">{{user.losses}}</div>
+                <div class="label">Losses</div>
+            </div>
+            <div class="stat draw">
+                <i class="fa-solid fa-handshake"></i>
+                <div class="value">{{user.draws}}</div>
+                <div class="label">Draws</div>
+            </div>
+            <div class="stat elo">
+                <i class="fa-solid fa-chess-king"></i>
+                <div class="value">{{user.elo_rating}}</div>
+                <div class="label">Elo</div>
+            </div>
+            <div class="stat streak">
+                <i class="fa-solid fa-fire"></i>
+                <div class="value">{{user.current_streak}}</div>
+                <div class="label">Streak</div>
+            </div>
+        </div>
+
+        <p><strong>Username:</strong> {{user.username}}</p>
+        <p><strong>Email:</strong> {{user.email}}</p>
+
+        <hr>
+        <h2>Update Account</h2>
+        <form action="/auth/update-profile" method="POST">
+            <label>Username:</label>
+            <input type="text" name="username" value="{{user.username}}" required />
+            <label>Email:</label>
+            <input type="email" name="email" value="{{user.email}}" required />
+            <button type="submit">Update Profile</button>
+        </form>
+
+        <hr>
+        <h2>Change Password</h2>
+        <form action="/auth/change-password" method="POST">
+            <label>Current Password:</label>
+            <input type="password" name="currentPassword" required />
+            <label>New Password:</label>
+            <input type="password" name="newPassword" required />
+            <label>Confirm New Password:</label>
+            <input type="password" name="confirmNewPassword" required />
+            <button type="submit">Change Password</button>
+        </form>
+
+        <a href="/auth/logout">Logout</a>
+    </div>
+</body>
+</html>

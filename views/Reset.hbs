@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <title>Reset Password</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Playfair Display', sans-serif;
+    }
+
+    body {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: center; 
+      align-items: center;
+      min-height: 100vh;
+      width: 100%;
+      background: #ffffff;
+      background-image: url('digital-art-style-abstract-chess-pieces.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: scroll;
+    }
+    
+    .container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form{
+      width: 90%;
+    }
+
+    .form-box {
+      position: absolute; 
+      display: flex;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      padding: 40px;
+      background: #fff;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-box h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .form-box p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .input-box {
+      position: relative;
+      margin: 15px 0;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 12px 40px 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .input-box i {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #777;
+      font-size: 1.2rem;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: rgb(233, 136, 39);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: rgb(209, 168, 92);
+    }
+
+    .forgot-link {
+      margin-top: 20px;
+    }
+
+    .forgot-link a {
+      text-decoration: none;
+      font-size: 1rem;
+      color: rgb(233, 136, 39);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .forgot-link a:hover {
+      color: rgb(209, 168, 92);
+    }
+    .message {
+      max-width: 400px;
+      margin: 15px auto;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .message {
+      background-color:   rgb(233, 136, 39);
+    }
+
+    .message.error {
+      background-color: #e74c3c; 
+    }
+
+    .message.success {
+      background-color: #2ecc71; 
+    }
+
+    .message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .message.hide {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    @media screen and (max-width: 670px) {
+      body {
+        justify-content: center; 
+      }
+
+      .form-box {
+        width: 100%;
+        border-radius: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .form-box h1 {
+        font-size: 1.8rem;
+      }
+
+      .form-box p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box resetpassword">
+      <form action="/auth/Reset" method="POST">
+        <h1>Reset Password</h1>
+        <p>Enter your new password below.</p>
+
+        <input type="hidden" name="token" value="{{token}}">
+        <input type="hidden" name="id" value="{{id}}">
+
+        <div class="input-box">
+          <input type="password" name="password" placeholder="New Password" required>
+          <i class='bx bxs-lock'></i>
+        </div>
+
+        <div class="input-box">
+          <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+          <i class='bx bxs-lock'></i>
+        </div>
+            <p>Token: {{token}}</p>
+            <p>ID: {{id}}</p>
+        <button type="submit" class="btn">Reset Password</button>
+
+        <div class="forgot-link">
+          <a href="/login">Back to Login</a>
+        </div>
+        {{#if message}}
+          <div class="message">
+            <h4>{{message}}</h4>
+          </div>
+        {{/if}}
+      </form>
+    </div>
+  </div>
+  <script>
+    const message = document.querySelector('.message');  
+        if (message){
+        setTimeout(() => {
+            message.style.opacity = "0"; 
+            message.style.transition = "opacity 1s ease";
+            setTimeout(() => {
+                message.remove();
+            }, 1000);
+        }, 5000);
+        message.addEventListener("click", () => {
+        message.remove();
+    });
+  }
+  </script>
+</body>
+</html>
+<!-- 
+https://youtu.be/VavWEtI5T7c?si=uSpqar97idHtXoBL - Nodejs MYSQL Login Tutorial - Part 1/7
+https://youtu.be/q5iDjNR1O7Y?si=n7cDv2wtT4qFPrX_ - How To Fix Error PS1 Can Not Be Loaded Because Running Scripts Is Disabled On This System? SOLVED 
+ ->

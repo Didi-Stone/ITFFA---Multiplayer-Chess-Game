@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <title>Chess Dashboard</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <h4><span class="welcome">Welcome, {{user.username}}!</span></h4>
+    <ul>
+      <li><a href="/auth/profile">Profile</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+      <li>
+        <button id="theme-toggle">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <div class="profile-stats">
+    <div class="stat">
+      <i class="fa-solid fa-trophy"></i>
+      <div class="value">{{user.wins}}</div>
+      <div class="label">Wins</div>
+    </div>
+    <div class="stat">
+      <i class="fa-solid fa-skull-crossbones"></i>
+      <div class="value">{{user.losses}}</div>
+      <div class="label">Losses</div>
+    </div>
+    <div class="stat">
+      <i class="fa-solid fa-handshake"></i>
+      <div class="value">{{user.draws}}</div>
+      <div class="label">Draws</div>
+    </div>
+    <div class="stat">
+      <i class="fa-solid fa-chess-king"></i>
+      <div class="value">{{user.elo_rating}}</div>
+      <div class="label">Elo Rating</div>
+    </div>
+    <div class="stat">
+      <i class="fa-solid fa-fire"></i>
+      <div class="value">{{user.current_streak}}</div>
+      <div class="label">Current Streak</div>
+    </div>
+  </div>
+  <div class="dashboard">
+    <div class="card" id="quick-match"><a href="/quick-match">Quick Match</a></div>
+    <div class="card" id="online-match"><a href="/online-match">Online Match</a></div>
+    <div class="card" id="private-match"><a href="/private-match">Private Match</a></div>
+    <div class="card" id="history"><a href="/match-history">Match History</a></div>
+    <div class="card" id="leaderboard"><a href="/leaderboard">Leaderboard</a></div>
+  </div>
+  <section class="slideshow">
+    <h2>Did You Know?</h2>
+    <div class="slideshow-container">
+      <p id="fact"></p>
+    </div>
+  </section>
+  <section class="video-section">
+    <h2>Chess Videos</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/OCSbzArwB10" 
+                title="Chess for Beginners" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/NAIQyoPcjNM" 
+                title="Magnus Carlsen Best Games" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/VRXBsN3xmiE?si=-CfhHjNkdRXX0VEE" 
+                title="Top 10 Chess Traps" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    const icon = themeToggle.querySelector("i");
+
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        icon.classList.replace("fa-sun", "fa-moon");
+      } else {
+        icon.classList.replace("fa-moon", "fa-sun");
+      }
+    });
+
+    const facts = [
+      "The longest chess game theoretically possible is 5,949 moves.",
+      "The word 'checkmate' comes from the Persian 'shah mat' meaning 'the king is helpless'.",
+      "There are more possible chess games than atoms in the observable universe.",
+      "Magnus Carlsen became the youngest #1 player at 19 years old.",
+      "The first modern chess tournament was held in London in 1851.",
+      "The first computer to defeat a world champion was IBM's Deep Blue against Garry Kasparov in 1997.",
+      "The queen was originally the weakest piece in early chess — it became the strongest in the 15th century.",
+      "The shortest possible checkmate is called 'Fool’s Mate' — it can happen in just two moves.",
+      "The longest recorded official chess game lasted 269 moves and ended in a draw (Nikolić–Arsović, 1989).",
+      "Grandmaster Bobby Fischer learned chess at age 6 after finding a set in a toy store.",
+      "Chess is believed to have originated in India around the 6th century, where it was called Chaturanga.",
+      "In 1972, the World Chess Championship between Bobby Fischer and Boris Spassky was seen as a Cold War battle.",
+      "Blindfold chess masters can play multiple games simultaneously without seeing the boards.",
+      "The term 'stalemate' literally means a situation where no legal move can be made — resulting in a draw.",
+      "The famous 'Immortal Game' was played in 1851 between Adolf Anderssen and Lionel Kieseritzky.",
+      "During World War II, coded chess moves were sometimes used in secret communications.",
+      "The knight is the only piece that can jump over others.",
+      "A pawn that reaches the opposite side of the board can promote to any piece (usually a queen).",
+      "The record for the most simultaneous chess games played is 48 boards — by Grandmaster Timur Gareyev blindfolded!",
+      "World Champion Magnus Carlsen also models professionally and holds a degree in economics."
+    ];
+
+    let index = 0;
+    const factElement = document.getElementById("fact");
+    function showFact() {
+      factElement.textContent = facts[index];
+      index = (index + 1) % facts.length;
+    }
+    showFact();
+    setInterval(showFact, 4000);
+  </script>
+</body>
+</html>
